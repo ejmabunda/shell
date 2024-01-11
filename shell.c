@@ -17,17 +17,17 @@ void shell(void)
 	ssize_t read;
 
 	len = 0;
-	
+
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
 			_puts("($) ");
-		
+
 		read = getline(&line, &len, stdin);
 		if (read == -1)
 			break;
-		
-		/* remove newline character from input */
+
+		/* remove newline character at the end */
 		rm_newline(line);
 
 		argv[0] = line;
