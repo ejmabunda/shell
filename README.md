@@ -6,3 +6,9 @@ A shell is a program that exposes an operating system's services to a human user
 - Commands are made of only one word. No arguments.
 - If an executable cannot be found, an error message is displayed and the user is prompted again.
 - Handles errors, and the `EOF` "end of file" condition (`Ctrl+D`)
+
+## Compilation
+The shell was tested with the following command:
+```
+gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
+```

@@ -20,7 +20,9 @@ void shell(void)
 	
 	while (1)
 	{
-		_puts("($) ");
+		if (isatty(STDIN_FILENO))
+			_puts("($) ");
+		
 		read = getline(&line, &len, stdin);
 		if (read == -1)
 			break;
@@ -45,5 +47,6 @@ void shell(void)
 	}
 
 	free(line);
-	_puts("\n");
+	if (isatty(STDIN_FILENO))
+		_puts("\n");
 }
