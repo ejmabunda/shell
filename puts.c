@@ -10,7 +10,7 @@
 void _puts(char *str)
 {
 	int index;
-	
+
 	if (str == NULL)
 		return;
 

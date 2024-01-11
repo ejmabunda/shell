@@ -13,8 +13,8 @@ char **_splitstr(char *str, char *delim)
 {
 	char **arr;
 	char *copy, *token;
-	int num_tok, index;
-	
+	int num_tok;
+
 	if (str == NULL)
 		return (NULL);
 
@@ -35,29 +35,10 @@ char **_splitstr(char *str, char *delim)
 		token = strtok(NULL, delim);
 	}
 
-	/* allocate memory for the array */
-	arr = (char **)malloc(sizeof(char *) * num_tok);
-	if (arr == NULL)
-		return (NULL);
-
 	/* copy tokens onto array */
 	copy = _strdup(str);
-	if (copy == NULL)
-		return (NULL);
+	arr = _strtok_cpy(copy, delim, num_tok);
 
-	token = strtok(copy, delim);
-	if (token == NULL)
-		return (NULL);
-
-	index = 0;
-	while (token != NULL)
-	{
-		arr[index] = _strdup(token);
-		token = strtok(NULL, delim);
-		index++;
-	}
-
-	free(token);
 	free(copy);
 
 	return (arr);

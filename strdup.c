@@ -3,8 +3,7 @@
 
 /**
  * _strdup - duplicates a string
- * @str1: first string
- * @str2: second string
+ * @str: first string
  *
  * Return: copy of the original string, NULL on failure
  */
