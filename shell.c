@@ -13,41 +13,37 @@ void shell(void)
 {
 	char *line;
 	size_t len;
-	char **argv;
-	pid_t child;
+	char *argv[2];
+	ssize_t read;
 
+	len = 0;
+	
 	while (1)
 	{
 		_puts("($) ");
-		line = NULL;
-		if (getline(&line, &len, stdin) == -1)
-		{
-			perror("getline error: ");
-			continue;
-		}
-
+		read = getline(&line, &len, stdin);
+		if (read == -1)
+			break;
+		
 		/* remove newline character from input */
 		rm_newline(line);
 
-		if (_strcmp(line, "exit") == 0)
-			exit(EXIT_SUCCESS);
-
-		argv = _splitstr(line, " ");
+		argv[0] = line;
+		argv[1] = NULL;
 
 		/* try to execute command in a child process */
 		if (fork() == 0)
 		{
-			if (execve(argv[0], argv, NULL) == -1)
-			{
-				perror("execve error: ");
-				continue;
-			}
-			exit(0);
+			execve(line, argv, NULL);
+			perror("execve error: ");
+			exit(EXIT_FAILURE);
 		}
 		else
 		{
-			child = wait(NULL);
-			child = child;
+			wait(NULL);
 		}
 	}
+
+	free(line);
+	_puts("\n");
 }
