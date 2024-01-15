@@ -4,8 +4,6 @@
 #include <sys/wait.h>
 #include <stdlib.h>
 
-extern char **environ;
-
 #include "main.h"
 
 /**
@@ -19,6 +17,7 @@ void shell(void)
 	size_t len;
 	char *argv[2];
 	ssize_t read;
+	char *_environ[1];
 
 	len = 0;
 
@@ -40,9 +39,10 @@ void shell(void)
 		/* try to execute command in a child process */
 		if (fork() == 0)
 		{
-			execve(line, argv, environ);
+			_environ[0] = NULL;
+			execve(line, argv, _environ);
 			perror("execve error: ");
-			free(line)
+			free(line);
 			exit(EXIT_FAILURE);
 		}
 		else
