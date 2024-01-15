@@ -1,8 +1,12 @@
-#include "main.h"
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <sys/wait.h>
+#include <stdlib.h>
+
+extern char **environ;
+
+#include "main.h"
 
 /**
  * shell - simple shell
@@ -36,7 +40,7 @@ void shell(void)
 		/* try to execute command in a child process */
 		if (fork() == 0)
 		{
-			execve(line, argv, NULL);
+			execve(line, argv, environ);
 			perror("execve error: ");
 			exit(EXIT_FAILURE);
 		}
