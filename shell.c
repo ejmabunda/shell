@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <stdio.h> /* stdin */
 #include <unistd.h>
 #include <stdlib.h>
 #include <sys/wait.h>
@@ -42,6 +42,7 @@ void shell(void)
 		{
 			execve(line, argv, environ);
 			perror("execve error: ");
+			free(line)
 			exit(EXIT_FAILURE);
 		}
 		else
