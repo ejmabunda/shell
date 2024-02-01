@@ -1,6 +1,8 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+extern char **environ;
+
 /* duplicates a string */
 char *_strdup(char *str);
 

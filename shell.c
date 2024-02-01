@@ -14,7 +14,6 @@ void shell(void)
 	size_t len;
 	char *argv[2];
 	ssize_t read;
-	char *_environ[1];
 
 	len = 0;
 	while (1)
@@ -29,8 +28,7 @@ void shell(void)
 		argv[1] = NULL;
 		if (fork() == 0)
 		{
-			_environ[0] = NULL;
-			execve(line, argv, _environ);
+			execve(line, argv, environ);
 			perror("execve error: ");
 			free(line);
 			exit(EXIT_FAILURE);
