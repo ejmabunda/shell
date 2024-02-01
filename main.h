@@ -22,7 +22,7 @@ void _puts(char *str);
 void _putint(int n);
 
 /* splits a string */
-char **_splitstr(char *str, char *delim);
+char **_split(char *str, char delim);
 
 /* start the shell */
 void shell(void);
