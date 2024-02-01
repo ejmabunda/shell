@@ -25,6 +25,8 @@ void shell(void)
 			break;
 		rm_newline(line);
 		args = _split(line, ' ');
+		if (_strcmp(args[0], "exit") == 0)
+			exit(EXIT_FAILURE);
 		if (fork() == 0)
 		{
 			execve(args[0], args, environ);
