@@ -46,30 +46,36 @@ void shell(void)
 
 #include <string.h>
 
-char **_split(char *str, char delim) {
-    char **array = NULL;
-    size_t num_elts = 0;
-    int current_length = 0;
-    int consumed = 0;
-    size_t i;
-    int due_to_end;
+/**
+ * _split - splits a string into an array
+ * @str: string
+ * @delim: character
+ *
+ * Return: array
+ */
+char **_split(char *str, char delim)
+{
+	char **array = NULL;
+	size_t num = 0;
+	int len = 0;
+	int consumed = 0;
+	size_t i;
+	int due_to_end;
 
-    for (i = 0; i < strlen(str); i++) {
-        current_length++;
-        due_to_end = 0;
-
-        if ((str[i] == delim && i != (strlen(str) - 1)) ||
-            (i == strlen(str) - 1 && (due_to_end = 1))) {
-            array = realloc(array, (num_elts + 1) * sizeof(char *));
-            array[num_elts] = calloc(current_length + 1, sizeof(char));
-            memcpy(array[num_elts++], str + consumed, (due_to_end == 0 ? current_length - 1 : current_length));
-
-            consumed += current_length;
-            current_length = 0;
-        }
-    }
-    /* terminate the array with NULL */
-    array[num_elts] = NULL;
-
-    return (array);
+	for (i = 0; i < strlen(str); i++)
+	{
+		len++;
+		due_to_end = 0;
+		if ((str[i] == delim && i != (strlen(str) - 1)) ||
+		    (i == strlen(str) - 1 && (due_to_end == 1)))
+		{
+			array = realloc(array, (num + 1) * sizeof(char *));
+			array[num] = calloc(len + 1, sizeof(char));
+			memcpy(array[num++], str + consumed, (due_to_end == 0 ? len - 1 : len));
+			consumed += len;
+			len = 0;
+		}
+	}
+	array[num] = NULL;
+	return (array);
 }
