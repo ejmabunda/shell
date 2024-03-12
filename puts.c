@@ -8,7 +8,8 @@
  *
  * Return: This function does not return any value.
  */
-void _puts(const char *str) {
+void _puts(const char *str)
+{
 	write(STDOUT_FILENO, str, _strlen(str));
 }
 

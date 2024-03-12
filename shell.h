@@ -14,4 +14,7 @@ void _puts(const char *str);
 /* Compares two strings. */
 int _strcmp(const char *str1, const char *str2);
 
+/* Tokenizes the input line, and tries to execute the first command. */
+void tokenize(char *line);
+
 #endif /* SHELL_H */
