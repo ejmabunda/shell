@@ -20,13 +20,13 @@ int main(void)
 
 	while (1)
 	{
-		_puts("#cisfun$ ");
+		_puts("($) ");
 		read = getline(&line, &len, stdin);
 		if (read == -1) /* End of file or error */
 		{
 			if (feof(stdin)) /* End of file */
 			{
-				_puts("\nGoodbye!\n");
+				_puts("\n");
 				exit(EXIT_SUCCESS);
 			}
 			else /* Error */
